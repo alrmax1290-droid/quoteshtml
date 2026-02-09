@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rotating Quotes</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  #quote {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+</style>
+</head>
+<body>
+<div id="quote">Loading...</div>
+
+<script>
+  const quotes = [
+    "Bob is cool",
+    "jack links gotta have jack links",
+    "AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH",
+    "Securly sucks",
+    "want a pickle in a pouch?",
+    "Also try GN-math!",
+    "I WAKE UP TO GO TO SLEEP",
+    "sink let that in",
+    "in the big 2026",
+    "NO ROLLER DOGS?",
+    "City boyyyy",
+    "read this if you like boys",
+    "Brought to you by The Goat😹✌️",
+    "giggity",
+    "This site wont give you a virus trust"
+  ];
+
+  const quoteDiv = document.getElementById("quote");
+
+  function showRandomQuote() {
+    quoteDiv.style.opacity = 0;
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteDiv.textContent = quotes[randomIndex];
+      quoteDiv.style.opacity = 1;
+    }, 1000);
+  }
+
+  showRandomQuote();
+  setInterval(showRandomQuote, 5000); // rotate every 5 seconds
+</script>
+</body>
+</html>
