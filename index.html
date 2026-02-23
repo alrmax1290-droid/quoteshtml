@@ -14,7 +14,7 @@
     font-size: 24px;
     text-align: center;
     margin-top: 50px;
-    color: black;
+    color: black; /* make text black */
     opacity: 1;
     transition: opacity 0.8s ease-in-out;
   }
@@ -24,48 +24,47 @@
 <div id="quote">Loading...</div>
 
 <script>
-const quotes = [
-  "Cmon we all know that Marval Rivals is overrated",
-  "Everyone knows ur a furry buddy",
-  "For the love of god go touch some grass",
-  "Are you enjoying the site? You better be or else...",
-  "Join my discord I have funny things on there"
-];
+document.addEventListener("DOMContentLoaded", () => {
+    const quotes = [
+        "Cmon we all know that Marval Rivals is overrated",
+        "Everyone knows ur a furry buddy",
+        "For the love of god go touch some grass",
+        "Are you enjoying the site? You better be or else...",
+        "Join my discord I have funny things on there"
+    ];
 
-let shuffledQuotes = [...quotes];
-let currentIndex = 0;
-
-// Shuffle function
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-shuffledQuotes = shuffleArray(shuffledQuotes);
-const quoteDiv = document.getElementById("quote");
-
-function showNextQuote() {
-  quoteDiv.style.opacity = 0;
-  setTimeout(() => {
-    quoteDiv.textContent = shuffledQuotes[currentIndex];
-    quoteDiv.style.opacity = 1;
-    currentIndex++;
-    if (currentIndex >= shuffledQuotes.length) {
-      shuffledQuotes = shuffleArray([...quotes]);
-      currentIndex = 0;
+    // Shuffle function
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
-  }, 300);
-}
 
-// Show first quote immediately
-quoteDiv.textContent = shuffledQuotes[currentIndex];
-currentIndex++;
+    let shuffledQuotes = shuffleArray([...quotes]);
+    let currentIndex = 0;
+    const quoteDiv = document.getElementById("quote");
 
-// Rotate every 5 seconds
-setInterval(showNextQuote, 5000);
+    // Show first quote immediately
+    quoteDiv.textContent = shuffledQuotes[currentIndex];
+    currentIndex++;
+
+    function showNextQuote() {
+        quoteDiv.style.opacity = 0;
+        setTimeout(() => {
+            quoteDiv.textContent = shuffledQuotes[currentIndex];
+            quoteDiv.style.opacity = 1;
+            currentIndex++;
+            if (currentIndex >= shuffledQuotes.length) {
+                shuffledQuotes = shuffleArray([...quotes]);
+                currentIndex = 0;
+            }
+        }, 300);
+    }
+
+    setInterval(showNextQuote, 5000); // rotate every 5 seconds
+});
 </script>
 </body>
 </html>
