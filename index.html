@@ -2,19 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rotating Quotes Fixed</title>
+<title>Rotating Quotes No Repeats</title>
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-  }
   #quote {
     font-size: 24px;
     text-align: center;
     margin-top: 50px;
-    color: black;       /* ensure text is black */
+    color: black;
     opacity: 1;
     transition: opacity 0.8s ease-in-out;
   }
@@ -24,7 +18,7 @@
 <div id="quote"></div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
     const quotes = [
         "Cmon we all know that Marval Rivals is overrated",
         "Everyone knows ur a furry buddy",
@@ -44,31 +38,26 @@ document.addEventListener("DOMContentLoaded", function() {
         return arr;
     }
 
-    let shuffledQuotes = shuffleArray([...quotes]);
-    let currentIndex = 0;
+    let remainingQuotes = shuffleArray([...quotes]);
 
-    // Function to show the quote with fade
-    function showQuote(text) {
+    function showNextQuote() {
+        if (remainingQuotes.length === 0) {
+            // Reshuffle when all quotes have been used
+            remainingQuotes = shuffleArray([...quotes]);
+        }
+        const nextQuote = remainingQuotes.shift(); // take first quote from shuffled list
         quoteDiv.style.opacity = 0;
         setTimeout(() => {
-            quoteDiv.textContent = text;
+            quoteDiv.textContent = nextQuote;
             quoteDiv.style.opacity = 1;
-        }, 50); // very short delay ensures browser repaints
+        }, 50);
     }
 
     // Show first quote immediately
-    showQuote(shuffledQuotes[currentIndex]);
-    currentIndex++;
+    showNextQuote();
 
-    // Rotate quotes
-    setInterval(() => {
-        if (currentIndex >= shuffledQuotes.length) {
-            shuffledQuotes = shuffleArray([...quotes]);
-            currentIndex = 0;
-        }
-        showQuote(shuffledQuotes[currentIndex]);
-        currentIndex++;
-    }, 5000);
+    // Rotate every 5 seconds
+    setInterval(showNextQuote, 5000);
 });
 </script>
 </body>
