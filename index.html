@@ -14,7 +14,7 @@
     font-size: 24px;
     text-align: center;
     margin-top: 50px;
-    color: black; /* make text black */
+    color: black;
     opacity: 1;
     transition: opacity 0.8s ease-in-out;
   }
@@ -24,14 +24,16 @@
 <div id="quote">Loading...</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function() {
     const quotes = [
-        "Cmon we all know that Marval Rivals is overrated",
-        "Everyone knows ur a furry buddy",
-        "For the love of god go touch some grass",
-        "Are you enjoying the site? You better be or else...",
-        "Join my discord I have funny things on there"
+        "Quote 1: Hello world!",
+        "Quote 2: This is a test.",
+        "Quote 3: Rotating quotes work now!",
+        "Quote 4: JavaScript is fun.",
+        "Quote 5: Black text appears!"
     ];
+
+    const quoteDiv = document.getElementById("quote");
 
     // Shuffle function
     function shuffleArray(array) {
@@ -44,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let shuffledQuotes = shuffleArray([...quotes]);
     let currentIndex = 0;
-    const quoteDiv = document.getElementById("quote");
 
     // Show first quote immediately
     quoteDiv.textContent = shuffledQuotes[currentIndex];
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
-    setInterval(showNextQuote, 5000); // rotate every 5 seconds
+    setInterval(showNextQuote, 5000);
 });
 </script>
 </body>
