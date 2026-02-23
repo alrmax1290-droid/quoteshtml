@@ -2,14 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rotating Quotes</title>
+<title>Rotating Quotes Test</title>
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-  }
   #quote {
     font-size: 24px;
     text-align: center;
@@ -26,22 +20,22 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const quotes = [
-        "Quote 1: Hello world!",
-        "Quote 2: This is a test.",
-        "Quote 3: Rotating quotes work now!",
-        "Quote 4: JavaScript is fun.",
-        "Quote 5: Black text appears!"
+        "Quote 1",
+        "Quote 2",
+        "Quote 3",
+        "Quote 4",
+        "Quote 5"
     ];
 
     const quoteDiv = document.getElementById("quote");
 
-    // Shuffle function
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+    // Shuffle array
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [arr[i], arr[j]] = [arr[j], arr[i]];
         }
-        return array;
+        return arr;
     }
 
     let shuffledQuotes = shuffleArray([...quotes]);
