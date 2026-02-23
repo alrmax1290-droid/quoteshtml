@@ -140,7 +140,7 @@
     "does he come with a side of FRIES?",
     "Cake is cake even if it has a candle",
     "Hope you have a nice gaming session -NRGmason48",
-    "vete para alla",
+    "vete para alla"
   ];
 
   // Shuffle function using Fisher-Yates
@@ -152,7 +152,7 @@
     return array;
   }
 
-  let shuffledQuotes = shuffleArray([...quotes]); // copy & shuffle
+  let shuffledQuotes = shuffleArray([...quotes]);
   let currentIndex = 0;
   const quoteDiv = document.getElementById("quote");
 
@@ -164,14 +164,14 @@
 
       currentIndex++;
       if (currentIndex >= shuffledQuotes.length) {
-        shuffledQuotes = shuffleArray([...quotes]); // reshuffle
+        shuffledQuotes = shuffleArray([...quotes]);
         currentIndex = 0;
       }
-    }, 500); // fade out for 0.5s
+    }, 500);
   }
 
   showNextQuote();
-  setInterval(showNextQuote, 5000); // rotate every 5 seconds
+  setInterval(showNextQuote, 5000);
 </script>
 </body>
 </html>
