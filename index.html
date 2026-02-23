@@ -8,13 +8,15 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #fff; /* optional: white background */
   }
   #quote {
     font-size: 24px;
     text-align: center;
     margin-top: 20px;
-    opacity: 0;
-    transition: opacity 1s;
+    opacity: 1;
+    color: black; /* make text black */
+    transition: opacity 0.8s ease-in-out;
   }
 </style>
 </head>
@@ -143,7 +145,7 @@ const quotes = [
 "vete para alla"
 ];
 
-// Fisher-Yates shuffle
+// Shuffle function
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -156,22 +158,24 @@ let shuffledQuotes = shuffleArray([...quotes]);
 let currentIndex = 0;
 const quoteDiv = document.getElementById("quote");
 
+// Show next quote
 function showNextQuote() {
   quoteDiv.style.opacity = 0;
   setTimeout(() => {
     quoteDiv.textContent = shuffledQuotes[currentIndex];
     quoteDiv.style.opacity = 1;
-
     currentIndex++;
     if (currentIndex >= shuffledQuotes.length) {
       shuffledQuotes = shuffleArray([...quotes]);
       currentIndex = 0;
     }
-  }, 500);
+  }, 300); // short fade delay
 }
 
-showNextQuote();
-setInterval(showNextQuote, 5000);
+// Show the first quote immediately
+quoteDiv.textContent = shuffledQuotes[currentIndex];
+currentIndex++;
+setInterval(showNextQuote, 5000); // rotate every 5 seconds
 </script>
 </body>
 </html>
